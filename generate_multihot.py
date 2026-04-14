@@ -8,7 +8,7 @@ from collections import defaultdict
 # =========================
 # CONFIG
 # =========================
-CSV_PATH = "BirdNet_Choctaw_Annotations_final.csv"
+CSV_PATH = "annotation_files/combined_annotations.csv"
 
 OUTPUT_AUDIO_DIR = "training/clips"
 OUTPUT_CSV_PATH = "training/annotations_multilabel.csv"
