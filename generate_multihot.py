@@ -23,7 +23,6 @@ os.makedirs(OUTPUT_AUDIO_DIR, exist_ok=True)
 df = pd.read_csv(CSV_PATH)
 
 # Normalize paths (important for Windows paths like E:\...)
-df["Begin Path"] = df["Begin Path"].astype(str)
 
 # =========================
 # CACHE AUDIO FILES
