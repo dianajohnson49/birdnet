@@ -59,7 +59,7 @@ for _, row in df.iterrows():
     file_path = row["Begin Path"]
     start = float(row["File Offset (s)"])
     end = float(row["Delta Time (s)"])
-    species = row["Species Code"]
+    species = row["Common Name"]
 
     # align to 3-second window
     window_start = int(start // 3 * 3)
