@@ -21,7 +21,21 @@ os.makedirs(OUTPUT_AUDIO_DIR, exist_ok=True)
 # LOAD DATA
 # =========================
 df = pd.read_csv(CSV_PATH)
-df["Begin Path"] = df["Begin Path"].str.replace('\\', '/', regex=False)
+
+target_folder = "2025 King Rail Project"
+
+def make_relative(path):
+    path = str(path).replace('\\', '/') # Fix slashes
+    if target_folder in path:
+        # Split at the folder name and keep everything from that point forward
+        relative_part = path.split(target_folder)[-1]
+        # Combine folder name with the rest (stripping leading slashes)
+        return os.path.join(target_folder, relative_part.lstrip('/'))
+    return path
+
+df["Begin Path"] = df["Begin Path"].apply(make_relative)
+
+
 # Normalize paths (important for Windows paths like E:\...)
 
 # =========================
