@@ -52,7 +52,7 @@ for _, row in df.iterrows():
     file_path = row["Begin Path"]
     start = float(row["File Offset (s)"])
     species = row["Common Name"]
-    window_start = int(start // 3 * 3)
+    window_start = int(round(start / 3) * 3)
     groups[(file_path, window_start)].append(species)
 
 # =========================
