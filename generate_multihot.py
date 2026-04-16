@@ -21,7 +21,7 @@ os.makedirs(OUTPUT_AUDIO_DIR, exist_ok=True)
 # LOAD DATA
 # =========================
 df = pd.read_csv(CSV_PATH)
-
+df["Begin Path"] = df["Begin Path"].str.replace('\\', '/', regex=False)
 # Normalize paths (important for Windows paths like E:\...)
 
 # =========================
