@@ -11,7 +11,7 @@ CSV_PATH = "annotation_files/combined_annotations.csv"
 
 # Updated to include the "all_birds" subdirectory
 SUBDIR_NAME = "all_birds"
-OUTPUT_AUDIO_DIR = os.path.join("training", "clips", SUBDIR_NAME)
+OUTPUT_AUDIO_DIR = os.path.join("training", "audio", SUBDIR_NAME)
 OUTPUT_CSV_PATH = "training/annotations_multilabel.csv"
 
 CLIP_DURATION_MS = 3000  # 3 seconds
@@ -100,5 +100,5 @@ out_df = out_df[["audio_subdir", "file", "labels"]]
 out_df.to_csv(OUTPUT_CSV_PATH, index=False)
 
 print("Done.")
-print(f"Clips saved to: {OUTPUT_AUDIO_DIR}")
+print(f"Audio clips saved to: {OUTPUT_AUDIO_DIR}")
 print(f"Annotations saved to: {OUTPUT_CSV_PATH}")
