@@ -10,8 +10,8 @@ from collections import defaultdict
 CSV_PATH = "annotation_files/combined_annotations.csv"
 
 # Updated to include the "all_birds" subdirectory
-SUBDIR_NAME = "all_birds"
-OUTPUT_AUDIO_DIR = os.path.join("training", "audio", SUBDIR_NAME)
+SUBDIR_NAME = "audio"
+OUTPUT_AUDIO_DIR = os.path.join("training", "audio")
 OUTPUT_CSV_PATH = "training/annotations_multilabel.csv"
 
 CLIP_DURATION_MS = 3000  # 3 seconds
