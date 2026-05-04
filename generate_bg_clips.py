@@ -46,9 +46,10 @@ seen = set()  # avoid duplicate windows
 for _, row in tqdm(df.iterrows(), total=len(df)):
     try:
         file_path = row["Begin Path"]
-        start = float(row["File Offset (s)"])
+        start = round(row["File Offset (s)"], 4)
 
-        # snap to 3-second window
+        # snap to 3-second window for file name
+        window_start = int(round(start / 3) * 3)
 
         key = (file_path, start)
         if key in seen:
@@ -67,7 +68,7 @@ for _, row in tqdm(df.iterrows(), total=len(df)):
 
         # filename
         base = os.path.splitext(os.path.basename(file_path))[0]
-        clip_name = f"{base}_{start}s_{start+3}s.wav"
+        clip_name = f"{base}_{window_start}s_{window_start+3}s.wav"
 
         out_path = os.path.join(OUTPUT_AUDIO_DIR, clip_name)
 
