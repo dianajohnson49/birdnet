@@ -98,9 +98,7 @@ for (file_path, window_start), species_list in tqdm(groups.items()):
 # =========================
 # PART 2 — BACKGROUND CLIPS
 # =========================
-seen_bg = set()
-
-print("Processing background clips...")
+background_records = []
 
 for _, row in tqdm(df_bg.iterrows(), total=len(df_bg)):
     try:
@@ -121,13 +119,15 @@ for _, row in tqdm(df_bg.iterrows(), total=len(df_bg)):
 
         clip_name = f"{base}_{start:.4f}s_{start+3:.4f}s.wav"
 
-        if (file_path, start) in seen_bg:
-            continue
-        seen_bg.add((file_path, start))
-
         out_path = os.path.join(BACKGROUND_DIR, clip_name)
-
         clip.export(out_path, format="wav")
+
+        # ADD TO CSV
+        background_records.append({
+            "audio_subdir": "Background",
+            "file": clip_name,
+            "labels": ""
+        })
 
     except Exception as e:
         print(f"Background error {file_path}: {e}")
@@ -135,7 +135,7 @@ for _, row in tqdm(df_bg.iterrows(), total=len(df_bg)):
 # =========================
 # SAVE CSV (LABELS ONLY)
 # =========================
-out_df = pd.DataFrame(records)
+out_df = pd.DataFrame(records + background_records)
 out_df = out_df[["audio_subdir", "file", "labels"]]
 out_df.to_csv(OUTPUT_CSV_PATH, index=False)
 
