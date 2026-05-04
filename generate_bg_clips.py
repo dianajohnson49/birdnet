@@ -49,16 +49,15 @@ for _, row in tqdm(df.iterrows(), total=len(df)):
         start = float(row["File Offset (s)"])
 
         # snap to 3-second window
-        window_start = int(round(start / 3) * 3)
 
-        key = (file_path, window_start)
+        key = (file_path, start)
         if key in seen:
             continue
         seen.add(key)
 
         audio = load_audio(file_path)
 
-        start_ms = window_start * 1000
+        start_ms = start * 1000
         end_ms = start_ms + CLIP_DURATION_MS
 
         clip = audio[start_ms:end_ms]
@@ -68,7 +67,7 @@ for _, row in tqdm(df.iterrows(), total=len(df)):
 
         # filename
         base = os.path.splitext(os.path.basename(file_path))[0]
-        clip_name = f"{base}_{window_start}s_{window_start+3}s.wav"
+        clip_name = f"{base}_{start}s_{start+3}s.wav"
 
         out_path = os.path.join(OUTPUT_AUDIO_DIR, clip_name)
 
