@@ -84,7 +84,7 @@ for (file_path, window_start), species_list in tqdm(groups.items()):
 
         clip.export(out_path, format="wav")
 
-        label_str = ",".join(sorted(set(species_list)))
+        label_str = ", ".join(sorted(set(species_list)))
 
         records.append({
             "audio_subdir": "audio",
