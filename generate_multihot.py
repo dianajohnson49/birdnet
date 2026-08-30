@@ -7,8 +7,8 @@ from collections import defaultdict
 # =========================
 # CONFIG
 # =========================
-LABEL_CSV_PATH = "annotation_files/combined_annotations.csv"
-BG_CSV_PATH = "bg_annotation_files/combined_annotations.csv"
+LABEL_CSV_PATH = "annotation_files/combined_annotations.csv" # put path the annotation csv here
+BG_CSV_PATH = "bg_annotation_files/combined_annotations.csv" # put path to background annotation csv here
 
 OUTPUT_AUDIO_DIR = os.path.join("training", "audio")
 BACKGROUND_DIR = os.path.join(OUTPUT_AUDIO_DIR, "Background")
@@ -26,7 +26,7 @@ os.makedirs(BACKGROUND_DIR, exist_ok=True)
 df_labels = pd.read_csv(LABEL_CSV_PATH)
 df_bg = pd.read_csv(BG_CSV_PATH)
 
-target_folder = "2025 King Rail Project"
+target_folder = "2025 King Rail Project"    # edit this if needed -> this is where all the audio files I was given were
 
 def make_relative(path):
     path = str(path).replace('\\', '/')
